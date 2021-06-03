@@ -1,4 +1,4 @@
-local Property = module.use("class.word.property")
+local Property = module.use({"class.word.property"})
 
 Property("you", {
     name = "text_you",

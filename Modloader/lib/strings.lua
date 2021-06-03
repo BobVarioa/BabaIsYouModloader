@@ -43,9 +43,5 @@ function strings.stringify(value)
 		return tostring(value)
 	end
 end
-function strings.find(string, pattern)
-	local _, _, _string = string.find(string, pattern)
-	return _string or string
-end
 
 return strings

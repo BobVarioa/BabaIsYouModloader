@@ -1,4 +1,4 @@
-local Prefix = module.use("class.word.prefix")
+local Prefix = module.use({"class.word.prefix"})
 
 Prefix("lonely", {
     name = "text_lonely",

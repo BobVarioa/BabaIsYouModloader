@@ -1,3 +1,4 @@
+local class = module.use({"lib.class"})
 local Verb = class()
 
 function Verb:init (name, func) 
@@ -6,7 +7,5 @@ function Verb:init (name, func)
 		self.func = func
 	end
 end
-
-Word.Verb = Verb
 
 return Verb

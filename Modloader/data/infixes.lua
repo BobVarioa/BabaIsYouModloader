@@ -1,4 +1,4 @@
-local Infix = module.use("class.word.infix")
+local Infix = module.use({"class.word.infix"})
 
 Infix("on", {
     name = "text_on",

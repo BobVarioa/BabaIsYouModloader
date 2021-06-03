@@ -1,4 +1,4 @@
-local class = module.use("lib.class")
+local class, strings = module.use({"lib.class", "lib.strings"})
 local Array = class()
 
 function Array:init(...)
@@ -62,9 +62,9 @@ function Array:toString()
     local temp = "[ "
     self:forEach(function(v, i)
         if i == 0 then
-            temp = temp .. utils.stringify(v)
+            temp = temp .. strings.stringify(v)
         else
-            temp = temp .. ", " .. utils.stringify(v)
+            temp = temp .. ", " .. strings.stringify(v)
         end
     end)
     return temp .. " ]"
@@ -73,9 +73,10 @@ end
 function Array:iterate()
     local i = -1
     local n = self.length - 1
+    local arr = self
     return function()
         i = i + 1
-        return i, self:read(i)
+        return i, arr:read(i), arr
     end
 end
 

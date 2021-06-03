@@ -1,4 +1,4 @@
-local WordRegistry = module.use("class.word.wordregistry")
+local WordRegistry, class, Array, world = module.use({"class.word.wordregistry", "lib.class", "lib.array", "lib.world"})
 
 ENUM.Parser = {
     Direction = {
@@ -20,19 +20,14 @@ ENUM.Parser = {
     }
 }
 
--- TODO: Should eventually check for word tiles
-local function isText(tile)
-    return find(tile.strings[UNITNAME], "text_(.+)")
-end
-
-Parser = class()
+local Parser = class()
 
 function Parser:init(options)
     self.directions = options.directions or ENUM.Parser.Directions.Normal
 end
 
-function Parser:getRulesFromTile(x, y, name)
-    local first = WordRegistry:get(name)
+function Parser:getRulesFromTile(x, y, tile)
+    local first = WordRegistry:get(tile.unitname)
 
     -- partial is an RuleCollection or nil
     local partial = first:parse(x, y, {
@@ -54,21 +49,18 @@ function Parser:parse()
 
     for x = 1, roomsizex, 1 do
         for y = 1, roomsizey, 1 do
-            local tiles = getTilesOnPosition(x, y):filter(function(tile, i)
-                return (tile.strings[UNITTYPE] == "text")
+            local tiles = world.getTilesOnPosition(x, y):filter(function(tile, _)
+                return (tile.unittype == "text")
             end)
             for i, tile in tiles:iterate() do
                 if tile.checked then
                     break
                 end
 
-                local name = isText(tile)
-                if name ~= nil then
-                    -- RuleCollection or Array
-                    local rules = self:getRulesFromTile(x, y, name) or Array()
-                    finalRules:push(rules:unpack())
-                    tile.checked = true
-                end
+                -- RuleCollection or Array
+                local rules = self:getRulesFromTile(x, y, tile) or Array()
+                finalRules:push(rules:unpack())
+                tile.checked = true
             end
         end
     end

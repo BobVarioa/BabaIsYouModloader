@@ -1,4 +1,9 @@
+--[[
+A modified version of [`class.lua`](https://github.com/jonstoler/class.lua)
+--]]
+
 local Class = {}
+local helpers = module.use("lib.helpers")
 
 -- default (empty) constructor
 function Class:init(...) end
@@ -7,7 +12,7 @@ function Class:init(...) end
 function Class:extend(obj)
 	local obj = obj or {}
 
-	utils.copyTable(self, obj)
+	helpers.copyTable(self, obj)
 
 	obj._ = obj._ or {}
 
@@ -58,6 +63,10 @@ function Class:extend(obj)
 		if obj.toString then return obj:toString() 
 		else tostring(obj) end
 	end
+
+	
+	-- allow for metatable access through the `__mt` property,..... I think
+	helpers.copyTable(rawget(obj._, "__mt"), mt)
 
 	setmetatable(obj, mt)
 

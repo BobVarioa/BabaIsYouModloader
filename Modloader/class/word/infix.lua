@@ -1,3 +1,4 @@
+local class = module.use({"lib.class"})
 local Infix = class()
 
 function Infix:init (name, func) 
@@ -6,7 +7,5 @@ function Infix:init (name, func)
 		self.func = func
 	end
 end
-
-Word.Infix = Infix
 
 return Infix

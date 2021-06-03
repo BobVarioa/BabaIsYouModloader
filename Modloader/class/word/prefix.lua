@@ -1,3 +1,4 @@
+local class = module.use({"lib.class"})
 local Prefix = class()
 
 function Prefix:init (name, func) 
@@ -6,7 +7,5 @@ function Prefix:init (name, func)
 		self.func = func
 	end
 end
-
-Word.Prefix = Prefix
 
 return Prefix

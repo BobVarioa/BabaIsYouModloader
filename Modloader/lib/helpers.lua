@@ -1,13 +1,13 @@
-local utils = {}
+local helpers = {}
 
-function utils.copyTable(table, destination)
+function helpers.copyTable(table, destination)
 	local table = table or {}
 	local result = destination or {}
 
 	for k, v in pairs(table) do
 		if not result[k] then
 			if type(v) == "table" and k ~= "__index" and k ~= "__newindex" then
-				result[k] = utils.copyTable(v)
+				result[k] = helpers.copyTable(v)
 			else
 				result[k] = v
 			end
@@ -17,4 +17,4 @@ function utils.copyTable(table, destination)
 	return result
 end
 
-return utils
+return helpers

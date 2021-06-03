@@ -1,4 +1,4 @@
-local Array = module.use("lib.array")
+local Array, Object = module.use({"lib.array", "class.unit.unit"})
 local world = {}
 
 function world.getTilesOnPosition(x, y)
@@ -8,7 +8,7 @@ function world.getTilesOnPosition(x, y)
 
 	if (unitmap[tileid] ~= nil) then
 		for i, unitid in ipairs(unitmap[tileid]) do
-			result:push(units[unitid])
+			result:push(Object(units[unitid]))
 		end
 	end
 

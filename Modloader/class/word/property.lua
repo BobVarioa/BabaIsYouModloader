@@ -1,3 +1,4 @@
+local class = module.use({"lib.class"})
 local Property = class()
 
 function Property:init (name, func) 
@@ -6,7 +7,5 @@ function Property:init (name, func)
 		self.func = func
 	end
 end
-
-Word.Property = Property
 
 return Property

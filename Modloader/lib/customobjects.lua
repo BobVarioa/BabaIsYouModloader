@@ -2,26 +2,43 @@
 local customobjects = {}
 
 ENUM.OBJECTS = {
+    -- Whether this object is a regular object or a text object.
     UNITTYPE = {
         OBJECT = "object",
         TEXT = "text"
     },
+    -- Animation style (how the object's sprites are used).
     TILING = {
+        -- None; static appearance (e.g, Flag)
         STATIC = -1,
+        -- Directional (e.g, Ghost)
         DIRECTIONAL = 0,
+        -- Animated per turn (e.g, Bat)
         ANIMATED = 4,
+        -- Animated & directional (e.g, Belt)
         ANIMATEDDIRECTIONAL = 3,
+        -- Character (e.g, Baba)
         CHARACTER = 2,
+        -- Tiled (e.g, Wall)
         TILED = 1
     },
+    -- The kind of text this object is. (For regular objects this is usually 0.)
     TYPE = {
+        -- Objects
         OBJECT = 0,
+        -- Verbs
         VERB = 1,
+        -- Properties/Qualities
         PROPERTY = 2,
+        -- Prefix conditions
         PREFIX = 3,
+        -- The word "not"
         NOT = 4,
+        -- Letters
         LETTERS = 5,
+        -- The word "and"
         AND = 6,
+        -- Infix condition with parameters
         INFIX = 7
     }
 }
@@ -31,31 +48,8 @@ ENUM.OBJECTS = {
     name: string                        -- The object's name.
                                            This appears in the rules list in the pause menu.
                                            Text objects' names are prefixed with "text_".
-    
-    unittype: string                    -- Whether this object is a regular object or a text object.
-        "object"
-        "text"
 
     tags: {string, string, ...}         -- The object's tags that are used in object searches.
-  
-    tiling: number                      -- Animation style (how the object's sprites are used).
-        -1                                 None; static appearance      (Flag)
-        0                                  Directional                  (Ghost)
-        4                                  Animated per turn            (Bat)
-        3                                  Animated & directional       (Belt)
-        2                                  Character                    (Baba)
-        1                                  Tiled                        (Wall)
-
-    type: number                        -- The kind of text this object is.
-                                           (For regular objects, type may be 0.)
-        0                                  Objects
-        1                                  Verbs
-        2                                  Properties/Qualities
-        3                                  Prefix conditions
-        4                                  The word "not"
-        5                                  Letters
-        6                                  The word "and"
-        7                                  Infix condition with parameters
 
     layer: number                       -- Change the order the sprites are rendered.
                                            Larger values are further in front.

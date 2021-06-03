@@ -1,4 +1,4 @@
-local Noun = module.use("class.word.noun")
+local Noun = module.use({"class.word.noun"})
 
 Noun("baba", {
     --[[ 

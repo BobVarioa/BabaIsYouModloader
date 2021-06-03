@@ -1,4 +1,4 @@
-local Verb = module.use("class.word.verb")
+local Verb = module.use({"class.word.verb"})
 
 Verb("follow", {
 	name = "text_follow",

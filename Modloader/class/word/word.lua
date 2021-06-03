@@ -1,3 +1,4 @@
+local class = module.use({"lib.class"})
 local Word = class()
 
 -- Word:parse(x, y, options) --> 
